@@ -1,4 +1,4 @@
-import Trie from './Trie';
+import Trie from './TrieClass';
 
 let trie = new Trie();
 trie.insert('world');
@@ -9,4 +9,3 @@ trie.remove('hello');
 trie.remove('hell');
 
 trie.printAll();
-//console.log(JSON.stringify(trie, null, 4));

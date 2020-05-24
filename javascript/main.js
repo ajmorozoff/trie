@@ -8,4 +8,3 @@ trie.insert('hell');
 trie.remove('hello');
 
 trie.printAll();
-console.log(JSON.stringify(trie, null, 4));

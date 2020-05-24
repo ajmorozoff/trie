@@ -4,7 +4,7 @@ const chalk = require('chalk');
 class Trie {
   constructor() {
     this.children = {};
-    this.terminates = false;
+    this.isWord = false;
   }
 
   insert(word) {
@@ -16,7 +16,7 @@ class Trie {
       }
       currentNode = currentNode.children[character];
     }
-    currentNode.terminates = true;
+    currentNode.isWord = true;
     return word;
   }
 
@@ -28,7 +28,7 @@ class Trie {
         return false;
       }
     }
-    return currentNode.terminates;
+    return currentNode.isWord;
   }
 
   printAll() {
@@ -39,7 +39,7 @@ class Trie {
       if (!node) {
         return;
       }
-      if (node.terminates) {
+      if (node.isWord) {
         wordList.push(path);
         console.log(chalk.magenta(path));
       }
@@ -62,7 +62,7 @@ class Trie {
       currentNode = currentNode.children[character];
     }
 
-    currentNode.terminates = false;
+    currentNode.isWord = false;
 
     //if there are other children (and thus words) stemming from this node, return
     if (Object.keys(currentNode.children).length) {
@@ -77,7 +77,7 @@ class Trie {
       if (Object.keys(parent.children).length === 1) {
         parent.children = {};
         //if the parent represents the end of the word, don't trim upwards anymore
-        if (parent.terminates) {
+        if (parent.isWord) {
           return;
         }
       }
